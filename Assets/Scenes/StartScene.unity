@@ -1226,7 +1226,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2612,6 +2612,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 109704909, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 122.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 109704909, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.58458
+      objectReference: {fileID: 0}
+    - target: {fileID: 109704909, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58458
+      objectReference: {fileID: 0}
+    - target: {fileID: 109704909, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.58458
+      objectReference: {fileID: 0}
+    - target: {fileID: 109704909, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 44.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7196959281662769404, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
       propertyPath: _allCams.Array.data[0]
       value: 
