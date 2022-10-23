@@ -11,6 +11,11 @@ public class Door_Button : MonoBehaviour
     [SerializeField] GameObject Light;
     Battery _battery;
 
+    public bool GetIsDoorActive()
+    {
+        return isDoorActive;
+    }
+
     bool isDoorActive;
     bool isLightActive;
 

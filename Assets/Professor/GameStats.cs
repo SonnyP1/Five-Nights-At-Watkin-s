@@ -7,6 +7,17 @@ public class GameStats : MonoBehaviour
 {
     [SerializeField] string[] _timeString;
     [SerializeField] TextMeshProUGUI Text;
+    [SerializeField] Door_Button LeftDoor;
+    [SerializeField] Door_Button RightDoor;
+    public Door_Button GetDoorLeft()
+    {
+        return LeftDoor;
+    }
+    public Door_Button GetDoorRight()
+    {
+        return RightDoor;
+    }
+
     private int timeCount;
     private float _timer;
     private bool _isFirstHour = true;
