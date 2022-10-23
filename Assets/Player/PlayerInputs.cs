@@ -5,6 +5,7 @@ using System.Net;
 using System.Numerics;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -43,24 +44,9 @@ public class PlayerInputs : MonoBehaviour
     void SetInputs()
     {
         _playerInputAction.Gameplay.Look.performed += UpdateLook;
-        _playerInputAction.Gameplay.Click.performed += OnClick;
+        //_playerInputAction.Gameplay.Click.performed += OnClick;
     }
 
-    private void OnClick(InputAction.CallbackContext obj)
-    {
-        Vector3 posFarClip = new Vector3(_inputX, _inputY, Camera.main.farClipPlane);
-        Vector3 posCloseClip = new Vector3(_inputX, _inputY, Camera.main.nearClipPlane);
-
-        Vector3 clickPosFarPos = Camera.main.ScreenToWorldPoint(posFarClip);
-        Vector3 clickPosClosePos = Camera.main.ScreenToWorldPoint(posCloseClip);
-
-        RaycastHit hit;
-        Debug.DrawRay(clickPosClosePos, clickPosFarPos - clickPosClosePos, Color.red,5f);
-        if (Physics.Raycast(clickPosClosePos, clickPosFarPos - clickPosClosePos, out hit, 100f, ClickableMask))
-        {
-            hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-        }
-    }
 
     private void UpdateLook(InputAction.CallbackContext obj)
     {

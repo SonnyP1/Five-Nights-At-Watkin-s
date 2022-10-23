@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Door_Button : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class Door_Button : MonoBehaviour
         Door.SetActive(false);
         Light.SetActive(false);
     }
+    
     public void DoorBtnPressed()
     {
         if (isDoorActive)
@@ -32,15 +36,13 @@ public class Door_Button : MonoBehaviour
     }
     public void LightBtnPressed()
     {
-        if (isLightActive)
+        if(isLightActive)
         {
             isLightActive = false;
-            Light.SetActive(isLightActive);
         }
         else
         {
             isLightActive = true;
-            Light.SetActive(isLightActive);
         }
     }
 
@@ -48,7 +50,12 @@ public class Door_Button : MonoBehaviour
     {
         if(isLightActive)
         {
+            Light.SetActive(isLightActive);
             _battery.AddPercent(-0.005f*Time.deltaTime);
+        }
+        else
+        {
+            Light.SetActive(isLightActive);
         }
 
         if(isDoorActive)

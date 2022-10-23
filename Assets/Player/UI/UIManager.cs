@@ -59,4 +59,13 @@ public class UIManager : MonoBehaviour
         }
         camToSwitchTo.Priority = 0;
     }
+
+
+    private void Update()
+    {
+        if (inTablet)
+        {
+            _battery.AddPercent(-0.005f * Time.deltaTime);
+        }
+    }
 }
