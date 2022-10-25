@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Video;
+
+public enum Door {Right,Left }
 
 public class Professor : MonoBehaviour
 {
-    [SerializeField] [Range(0,20)] int _difficultyLevel;
+    [SerializeField] [Range(-1,20)] int _difficultyLevel;
     [SerializeField] int _movementOpportunityFrequency = 4;
     [SerializeField] Transform[] _targets;
+    [SerializeField] Door _doorLoc;
+
+    [Header("Jump Scare")]
+    [SerializeField] GameObject _jumpScareObj;
+    [SerializeField] VideoPlayer _jumpScareVid;
 
     private Vector3 _startPos;
     private int _targetIndex = 0;
@@ -16,20 +24,42 @@ public class Professor : MonoBehaviour
     private GameStats _gameStats;
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
-
+    private bool _isVisable;
+    private Door_Button _door;
     private float _timer;
+
+    private void OnBecameVisible()
+    {
+        _isVisable = true;
+    }
+    private void OnBecameInvisible()
+    {
+        _isVisable = false;
+    }
     void Start()
     {
         _gameStats = FindObjectOfType<GameStats>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _startPos = transform.position;
+        if(_doorLoc == Door.Right)
+        {
+            _door = _gameStats.GetDoorRight();
+        }
+        else
+        {
+            _door = _gameStats.GetDoorLeft();
+        }
+
         StartCoroutine(TimerMovmentActive());
     }
 
+    public void IncreaseDifficultyLevel()
+    {
+        _difficultyLevel++;
+    }
     private void MovementOpportunity()
     {
-
         int randNum = Random.Range(0,20);
         if(randNum <= _difficultyLevel)
         {
@@ -46,13 +76,17 @@ public class Professor : MonoBehaviour
             return;
         }
 
+        if(_isVisable && _targetIndex == 0)
+        {
+            return;
+        }
 
         if(_targetIndex == _targets.Length-1)
         {
-            if(!_gameStats.GetDoorLeft().GetIsDoorActive())
+            if(!_door.GetIsDoorActive())
             {
                 _navMeshAgent.SetDestination(_targets[_targetIndex].position);
-                Debug.Log("JUMP SCARE");
+                JumpScare();
                 return;
             }
             else
@@ -65,7 +99,12 @@ public class Professor : MonoBehaviour
         _navMeshAgent.SetDestination(_targets[_targetIndex].position);
         _targetIndex++;
     }
-
+    public virtual void JumpScare()
+    {
+        _gameStats.StopAllAI();
+        _jumpScareObj.SetActive(true);
+        _jumpScareVid.Play();
+    }
     public virtual void FailMove()
     {
         _targetIndex = 0;
@@ -74,6 +113,11 @@ public class Professor : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("Speed",Mathf.Abs(_navMeshAgent.velocity.z));
+    }
+
+    public void StopAI()
+    {
+        StopAllCoroutines();
     }
     IEnumerator TimerMovmentActive()
     {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] GameObject _ccTVCam;
     [SerializeField] GameObject _cameraImage;
     [SerializeField] GameObject _cameraSelection;
     [SerializeField] CinemachineVirtualCamera[] _allCams;
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void SwitchToTabletView(bool val)
     {
+        _ccTVCam.SetActive(val);
         _cameraImage.SetActive(val);
         _cameraSelection.SetActive(val);
     }
@@ -97,7 +99,7 @@ public class UIManager : MonoBehaviour
     {
         if (inTablet)
         {
-            _battery.AddPercent(-0.005f * Time.deltaTime);
+            _battery.AddPercent(-0.00005f * Time.deltaTime);
         }
     }
 }

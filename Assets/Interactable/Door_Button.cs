@@ -66,7 +66,7 @@ public class Door_Button : MonoBehaviour
         if(isLightActive)
         {
             Light.SetActive(isLightActive);
-            _battery.AddPercent(-0.005f*Time.deltaTime);
+            _battery.AddPercent(-0.0005f*Time.deltaTime);
         }
         else
         {
@@ -75,7 +75,7 @@ public class Door_Button : MonoBehaviour
 
         if(isDoorActive)
         {
-            _battery.AddPercent(-0.005f*Time.deltaTime);
+            _battery.AddPercent(-0.0005f*Time.deltaTime);
         }
 
         if(_battery.GetBatteryPercent() <= 0)
