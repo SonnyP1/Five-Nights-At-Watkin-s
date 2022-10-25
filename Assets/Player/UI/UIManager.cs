@@ -51,6 +51,38 @@ public class UIManager : MonoBehaviour
         SwitchCam(_allCams[2]);
     }
 
+    public void CamBtn4()
+    {
+        SwitchCam(_allCams[3]);
+    }
+    public void CamBtn5()
+    {
+        SwitchCam(_allCams[4]);
+    }
+    public void CamBtn6()
+    {
+        SwitchCam(_allCams[5]);
+    }
+    public void CamBtn7()
+    {
+        SwitchCam(_allCams[6]);
+    }
+    public void CamBtn8()
+    {
+        SwitchCam(_allCams[7]);
+    }
+    public void CamBtn9()
+    {
+        SwitchCam(_allCams[8]);
+    }
+    public void CamBtn10()
+    {
+        SwitchCam(_allCams[9]);
+    }
+    public void CamBtn11()
+    {
+        SwitchCam(_allCams[10]);
+    }
     private void SwitchCam(CinemachineVirtualCamera camToSwitchTo)
     {
         foreach(CinemachineVirtualCamera cam in _allCams)
