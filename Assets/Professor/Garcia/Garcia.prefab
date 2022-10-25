@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4890732619722173291}
   m_Layer: 0
-  m_Name: Watkins
+  m_Name: Garcia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 0efc8c3d839e69b4eb39291885bbe7c2, type: 2}
+      objectReference: {fileID: 9100000, guid: 611bb7dc70a80cb40be0201d70541c05, type: 2}
     - target: {fileID: 5866666021909216657, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_WarningMessage
       value: 
