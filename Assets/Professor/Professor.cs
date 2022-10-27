@@ -11,21 +11,21 @@ public class Professor : MonoBehaviour
 {
     [SerializeField] [Range(-1,20)] int _difficultyLevel;
     [SerializeField] int _movementOpportunityFrequency = 4;
-    [SerializeField] Transform[] _targets;
+    [SerializeField] protected Transform[] _targets;
     [SerializeField] Door _doorLoc;
 
     [Header("Jump Scare")]
     [SerializeField] GameObject _jumpScareObj;
     [SerializeField] VideoPlayer _jumpScareVid;
 
-    private Vector3 _startPos;
+    protected Vector3 _startPos;
     private int _targetIndex = 0;
     private bool isMoving;
     private GameStats _gameStats;
-    private NavMeshAgent _navMeshAgent;
-    private Animator _animator;
-    private bool _isVisable;
-    private Door_Button _door;
+    protected NavMeshAgent _navMeshAgent;
+    protected Animator _animator;
+    protected bool _isVisable;
+    protected Door_Button _door;
     private float _timer;
 
     private void OnBecameVisible()
