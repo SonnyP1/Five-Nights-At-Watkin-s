@@ -44,9 +44,13 @@ public class PlayerInputs : MonoBehaviour
     void SetInputs()
     {
         _playerInputAction.Gameplay.Look.performed += UpdateLook;
-        //_playerInputAction.Gameplay.Click.performed += OnClick;
+        _playerInputAction.Gameplay.Click.performed += OnClick;
     }
 
+    private void OnClick(InputAction.CallbackContext obj)
+    {
+        //FindObjectOfType<Garcia>().FailMove();
+    }
 
     private void UpdateLook(InputAction.CallbackContext obj)
     {

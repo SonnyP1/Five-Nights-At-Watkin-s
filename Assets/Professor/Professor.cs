@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public enum Door {Right,Left }
 
@@ -20,7 +21,7 @@ public class Professor : MonoBehaviour
 
     protected Vector3 _startPos;
     private int _targetIndex = 0;
-    private bool isMoving;
+    protected bool _isMoving =false;
     private GameStats _gameStats;
     protected NavMeshAgent _navMeshAgent;
     protected Animator _animator;
@@ -36,7 +37,7 @@ public class Professor : MonoBehaviour
     {
         _isVisable = false;
     }
-    void Start()
+    public virtual void Start()
     {
         _gameStats = FindObjectOfType<GameStats>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -104,13 +105,14 @@ public class Professor : MonoBehaviour
         _gameStats.StopAllAI();
         _jumpScareObj.SetActive(true);
         _jumpScareVid.Play();
+        StartCoroutine(WaitToReloadLevel());
     }
     public virtual void FailMove()
     {
         _targetIndex = 0;
         _navMeshAgent.SetDestination(_startPos);
     }
-    private void Update()
+    virtual public void Update()
     {
         _animator.SetFloat("Speed",Mathf.Abs(_navMeshAgent.velocity.z));
     }
@@ -128,8 +130,17 @@ public class Professor : MonoBehaviour
             if (_timer == _movementOpportunityFrequency)
             {
                 _timer = 0;
-                MovementOpportunity();
+                if(!_isMoving)
+                {
+                    MovementOpportunity();
+                }
             }
         }
+    }
+
+    IEnumerator WaitToReloadLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
     }
 }
