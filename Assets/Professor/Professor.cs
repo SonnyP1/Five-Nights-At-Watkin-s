@@ -12,6 +12,7 @@ public class Professor : MonoBehaviour
 {
     [SerializeField] [Range(-1,20)] int _difficultyLevel;
     [SerializeField] int _movementOpportunityFrequency = 4;
+    [SerializeField] int _cooldownTime;
     [SerializeField] protected Transform[] _targets;
     [SerializeField] Door _doorLoc;
 
@@ -28,6 +29,7 @@ public class Professor : MonoBehaviour
     protected bool _isVisable;
     protected Door_Button _door;
     private float _timer;
+    protected bool _isCooldownActive = false;
 
     private void OnBecameVisible()
     {
@@ -64,9 +66,21 @@ public class Professor : MonoBehaviour
         int randNum = Random.Range(0,20);
         if(randNum <= _difficultyLevel)
         {
-            //do movement
             Debug.Log("MOVE AND BE SPOOKY");
-            Move();
+            Vector3 currentPos = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
+            if (!_isCooldownActive)
+            {
+                StartCoroutine(CooldownMovement());
+                Move();
+            }
+            else if(_door.GetIsDoorActive() && currentPos == _targets[_targets.Length-2].position)
+            {
+                Move();
+            }
+            else
+            {
+                Debug.Log("COOLING DOWN");
+            }
         }
     }
 
@@ -105,6 +119,7 @@ public class Professor : MonoBehaviour
         _gameStats.StopAllAI();
         _jumpScareObj.SetActive(true);
         _jumpScareVid.Play();
+        Debug.Log(gameObject.name + " I kill you");
         StartCoroutine(WaitToReloadLevel());
     }
     public virtual void FailMove()
@@ -142,5 +157,12 @@ public class Professor : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator CooldownMovement()
+    {
+        _isCooldownActive = true;
+        yield return new WaitForSeconds(_cooldownTime);
+        _isCooldownActive = false;
     }
 }

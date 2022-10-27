@@ -188,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _difficultyLevel: 20
   _movementOpportunityFrequency: 4
+  _cooldownTime: 0
   _targets:
   - {fileID: 0}
   - {fileID: 0}
@@ -249,7 +250,7 @@ PrefabInstance:
     - target: {fileID: -6885975220663758619, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1af93c780cc872a498a027626955c335, type: 2}
+      objectReference: {fileID: 2100000, guid: 8964dce91aa6e8844a24a8041e7f6069, type: 2}
     - target: {fileID: 919132149155446097, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_Name
       value: Watkins

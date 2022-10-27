@@ -57,7 +57,7 @@ public class Garcia : Professor
         {
             yield return new WaitForSeconds(1);
             timerToRunDownHall++;
-            if(timerToRunDownHall == 5)
+            if(timerToRunDownHall == 20)
             {
                 _meshRenderer.enabled = true;
                 _navMeshAgent.SetDestination(_targets[1].position);

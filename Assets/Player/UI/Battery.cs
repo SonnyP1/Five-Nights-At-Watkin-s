@@ -17,6 +17,12 @@ public class Battery : MonoBehaviour
     [SerializeField] GameObject _jumpScareObj;
     [SerializeField] VideoPlayer _jumpScareVid;
     private float percent = 1.0f;
+    private GameStats _gameStats;
+
+    private void Start()
+    {
+        _gameStats = FindObjectOfType<GameStats>();
+    }
     public float GetBatteryPercent()
     {
         return percent;
@@ -75,6 +81,7 @@ public class Battery : MonoBehaviour
 
     IEnumerator JumpScare()
     {
+        _gameStats.StopAllAI();
         yield return new WaitForSeconds(5f);
         _scarySound.Play();
         yield return new WaitForSeconds(Random.Range(9f,14f));
