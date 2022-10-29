@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.AI;
 
 public class Garcia : Professor
 {
+    //audio1 is running sound
+    //audio2 is banging sound
+    [SerializeField] CinemachineVirtualCamera RunCam;
     private int successRunCounter;
     private IEnumerator check;
     private SkinnedMeshRenderer _meshRenderer;
@@ -15,12 +19,12 @@ public class Garcia : Professor
         check = CheckIfPathComplete();
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
-    private void OnBecameVisible()
-    {
-        //FailMove();
-    }
     public override void Move()
     {
+        if(_gameStats.GetUIManager().GetInTablet())
+        {
+            return;
+        }
         successRunCounter++;
         Debug.Log(successRunCounter);
         _animator.SetFloat("Stages",successRunCounter);
@@ -42,6 +46,8 @@ public class Garcia : Professor
 
         _meshRenderer.enabled = true;
         _navMeshAgent.SetDestination(_startPos);
+
+        StartCoroutine(RotToOringalRot(1.0f));
         _isMoving = false;
     }
 
@@ -57,6 +63,12 @@ public class Garcia : Professor
         {
             yield return new WaitForSeconds(1);
             timerToRunDownHall++;
+            if(_gameStats.GetUIManager().GetCurrentCam() == RunCam)
+            {
+                _meshRenderer.enabled = true;
+                _navMeshAgent.SetDestination(_targets[1].position);
+                break;
+            }
             if(timerToRunDownHall == 20)
             {
                 _meshRenderer.enabled = true;
@@ -65,13 +77,25 @@ public class Garcia : Professor
             }
         }
 
-        while(gameObject.transform.position != _targets[1].position)
+        _audio1.Play();
+        while (gameObject.transform.position != _targets[1].position)
         {
             yield return new WaitForEndOfFrame();
         }
-
+        CheckDoor:
         if (_door.GetIsDoorActive())
         {
+            _audio1.Stop();
+            _audio2.Play();
+            while(_audio2.isPlaying)
+            {
+                if(!_door.GetIsDoorActive())
+                {
+                    goto CheckDoor;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+
             FailMove();
         }
         else

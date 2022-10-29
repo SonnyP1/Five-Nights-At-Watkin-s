@@ -10,42 +10,43 @@ public enum Door {Right,Left }
 
 public class Professor : MonoBehaviour
 {
+    [Header("Values")]
     [SerializeField] [Range(-1,20)] int _difficultyLevel;
     [SerializeField] int _movementOpportunityFrequency = 4;
     [SerializeField] int _cooldownTime;
+
+    [Header("Locations")]
     [SerializeField] protected Transform[] _targets;
     [SerializeField] Door _doorLoc;
+
 
     [Header("Jump Scare")]
     [SerializeField] GameObject _jumpScareObj;
     [SerializeField] VideoPlayer _jumpScareVid;
+    
+    [Header("Audio")]
+    [SerializeField] protected AudioSource _audio1;
+    [SerializeField] protected AudioSource _audio2;
 
     protected Vector3 _startPos;
+    protected Quaternion _startRot;
     private int _targetIndex = 0;
     protected bool _isMoving =false;
-    private GameStats _gameStats;
+    protected GameStats _gameStats;
     protected NavMeshAgent _navMeshAgent;
     protected Animator _animator;
-    protected bool _isVisable;
     protected Door_Button _door;
+    protected bool _isVisable;
     private float _timer;
     protected bool _isCooldownActive = false;
-
-    private void OnBecameVisible()
-    {
-        _isVisable = true;
-    }
-    private void OnBecameInvisible()
-    {
-        _isVisable = false;
-    }
     public virtual void Start()
     {
         _gameStats = FindObjectOfType<GameStats>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _startPos = transform.position;
-        if(_doorLoc == Door.Right)
+        _startRot = transform.rotation;
+        if (_doorLoc == Door.Right)
         {
             _door = _gameStats.GetDoorRight();
         }
@@ -73,7 +74,7 @@ public class Professor : MonoBehaviour
                 StartCoroutine(CooldownMovement());
                 Move();
             }
-            else if(_door.GetIsDoorActive() && currentPos == _targets[_targets.Length-2].position)
+            else if(_door.GetIsDoorActive() && currentPos == _targets[_targets.Length-1].position)
             {
                 Move();
             }
@@ -116,6 +117,14 @@ public class Professor : MonoBehaviour
     }
     public virtual void JumpScare()
     {
+        if(_audio1 != null)
+        {
+            _audio1.Stop();
+        }
+        if(_audio2 != null)
+        {
+            _audio2.Stop();
+        }
         _gameStats.StopAllAI();
         _jumpScareObj.SetActive(true);
         _jumpScareVid.Play();
@@ -126,6 +135,7 @@ public class Professor : MonoBehaviour
     {
         _targetIndex = 0;
         _navMeshAgent.SetDestination(_startPos);
+        StartCoroutine(RotToOringalRot(1.0f));
     }
     virtual public void Update()
     {
@@ -164,5 +174,11 @@ public class Professor : MonoBehaviour
         _isCooldownActive = true;
         yield return new WaitForSeconds(_cooldownTime);
         _isCooldownActive = false;
+    }
+
+    public IEnumerator RotToOringalRot(float val)
+    {
+        yield return new WaitForSeconds(val);
+        transform.rotation = _startRot;
     }
 }

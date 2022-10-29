@@ -9,8 +9,14 @@ public class GameStats : MonoBehaviour
     [SerializeField] TextMeshProUGUI Text;
     [SerializeField] Door_Button LeftDoor;
     [SerializeField] Door_Button RightDoor;
+    [SerializeField] UIManager UI;
 
     private Professor[] _allProfessor;
+
+    public UIManager GetUIManager()
+    {
+        return UI;
+    }
     public Door_Button GetDoorLeft()
     {
         return LeftDoor;

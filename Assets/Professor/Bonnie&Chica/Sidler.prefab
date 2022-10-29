@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4890732619722173291}
   - component: {fileID: 3270800068835929665}
-  - component: {fileID: 912922006482212794}
   - component: {fileID: 8791041615720790949}
   - component: {fileID: 6456956953814256082}
+  - component: {fileID: 4398826682808713605}
   m_Layer: 0
-  m_Name: Watkins
+  m_Name: Sidler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,27 +56,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &912922006482212794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563505166477122342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945f2f778910d66438ebbb57d906cb9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _difficultyLevel: 20
-  _movementOpportunityFrequency: 4
-  _cooldownTime: 12
-  _targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  _doorLoc: 1
-  _jumpScareObj: {fileID: 0}
-  _jumpScareVid: {fileID: 6456956953814256082}
 --- !u!195 &8791041615720790949
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -134,6 +113,27 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!114 &4398826682808713605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563505166477122342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6457dcceca05a2c44a1cc26f95309660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyLevel: 0
+  _movementOpportunityFrequency: 4
+  _cooldownTime: 0
+  _targets: []
+  _doorLoc: 0
+  _jumpScareObj: {fileID: 0}
+  _jumpScareVid: {fileID: 0}
+  _audio1: {fileID: 0}
+  _audio2: {fileID: 0}
 --- !u!1001 &1298659319892946540
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,7 +17,12 @@ public class UIManager : MonoBehaviour
         return inTablet;
     }
     private bool inTablet;
-
+    private CinemachineVirtualCamera CurrentCam;
+    private CinemachineVirtualCamera previousCam;
+    public CinemachineVirtualCamera GetCurrentCam()
+    {
+        return CurrentCam;
+    }
 
     private void SwitchToTabletView(bool val)
     {
@@ -30,11 +35,14 @@ public class UIManager : MonoBehaviour
     {
         if(inTablet)
         {
+            previousCam = CurrentCam;
+            CurrentCam = _allCams[_allCams.Length -1];
             inTablet = false;
             SwitchToTabletView(inTablet);
         }
         else
         {
+            CurrentCam = previousCam;
             inTablet = true;
             SwitchToTabletView(inTablet);
         }
@@ -91,6 +99,7 @@ public class UIManager : MonoBehaviour
         {
             cam.Priority = -1;
         }
+        CurrentCam = camToSwitchTo;
         camToSwitchTo.Priority = 0;
     }
 
