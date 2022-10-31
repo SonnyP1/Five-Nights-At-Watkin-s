@@ -72,6 +72,10 @@ public class Battery : MonoBehaviour
         foreach(Button button in buttonsInScene)
         {
             button.enabled = false;
+            if(button.gameObject.name == "TabletBtn")
+            {
+                button.onClick.Invoke();
+            }
         }
 
         BlueLight.SetActive(true);

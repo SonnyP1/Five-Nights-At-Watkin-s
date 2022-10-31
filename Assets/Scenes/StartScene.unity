@@ -937,7 +937,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &548848149
 MonoBehaviour:
@@ -1743,7 +1743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1563505166477122342, guid: 2fdb3eac5a728e74c9e04a3c2ac83d2f, type: 3}
       propertyPath: m_Name
-      value: Averolo
+      value: Arevalo
       objectReference: {fileID: 0}
     - target: {fileID: 1563505166477122342, guid: 2fdb3eac5a728e74c9e04a3c2ac83d2f, type: 3}
       propertyPath: m_IsActive
@@ -3211,7 +3211,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 497bc091e616f184aa96c8bba5c244e7, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -3228,7 +3228,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -6056,7 +6056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433816728531600820, guid: 59ab7fe0c9f6cd9498be295892b40234, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2433816728531600820, guid: 59ab7fe0c9f6cd9498be295892b40234, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6240,6 +6240,14 @@ PrefabInstance:
       propertyPath: _powerTurningOff
       value: 
       objectReference: {fileID: 1212117658}
+    - target: {fileID: 7196959281088365128, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196959281088365133, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7196959281662769404, guid: bda568e022a3a884388a197d1ef8508c, type: 3}
       propertyPath: _ccTVCam
       value: 

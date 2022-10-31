@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
     {
         if (inTablet)
         {
-            _battery.AddPercent(-0.00005f * Time.deltaTime);
+            _battery.AddPercent(-0.0005f * Time.deltaTime);
         }
     }
 }

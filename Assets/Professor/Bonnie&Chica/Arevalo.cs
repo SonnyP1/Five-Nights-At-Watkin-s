@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Averolo : Sidler
+public class Arevalo : Sidler
 {
 
     public override void Start()
