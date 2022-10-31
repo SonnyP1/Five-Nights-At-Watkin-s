@@ -134,6 +134,8 @@ MonoBehaviour:
   _jumpScareVid: {fileID: 0}
   _audio1: {fileID: 0}
   _audio2: {fileID: 0}
+  _rooms: []
+  _roomName: 
 --- !u!1001 &1298659319892946540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ PrefabInstance:
     - target: {fileID: -6885975220663758619, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1af93c780cc872a498a027626955c335, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dfd870da5931ec438e79115d3ed3e58, type: 2}
     - target: {fileID: 919132149155446097, guid: cb7f6f4be2f41794095838fcb90a9294, type: 3}
       propertyPath: m_Name
       value: Watkins

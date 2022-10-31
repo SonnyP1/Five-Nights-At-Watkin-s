@@ -55,7 +55,7 @@ public class GameStats : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             _timer += 1;
-            if(_timer == 10 && _isFirstHour)
+            if(_timer == 89 && _isFirstHour)
             {
                 _timer = 0;
                 _isFirstHour = false;
@@ -63,7 +63,7 @@ public class GameStats : MonoBehaviour
                 IncreaseGameDifficulty();
             }
             
-            if(_timer == 10)
+            if(_timer == 90)
             {
                 _timer = 0;
                 timeCount++;

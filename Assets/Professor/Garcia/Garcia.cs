@@ -78,10 +78,14 @@ public class Garcia : Professor
         }
 
         _audio1.Play();
-        while (gameObject.transform.position != _targets[1].position)
+
+        while (new Vector3(transform.position.x,0,transform.position.z) != _targets[1].position)
         {
+            Debug.Log("Not At Target[1]");
             yield return new WaitForEndOfFrame();
         }
+
+
         CheckDoor:
         if (_door.GetIsDoorActive())
         {
@@ -101,7 +105,7 @@ public class Garcia : Professor
         else
         {
             _navMeshAgent.SetDestination(_targets[2].position);
-            while(gameObject.transform.position != _targets[2].position)
+            while(new Vector3(transform.position.x, 0, transform.position.z) != _targets[2].position)
             {
                 yield return new WaitForEndOfFrame();
             }
