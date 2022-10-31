@@ -17,11 +17,11 @@ public enum Room
 public class Sidler : Professor
 {
     [Header("SidlerLoc")]
-    [SerializeField] Transform[] _rooms;
-    [SerializeField] Room[] _roomName;
-    private IDictionary<Room, Transform> _roomDictRoomTrans = new Dictionary<Room, Transform>();
-    private IDictionary<Transform, Room> _roomDictTransRoom = new Dictionary<Transform, Room>();
-    private Room currentRoom;
+    [SerializeField] protected Transform[] _rooms;
+    [SerializeField] protected Room[] _roomName;
+    protected IDictionary<Room, Transform> _roomDictRoomTrans = new Dictionary<Room, Transform>();
+    protected IDictionary<Transform, Room> _roomDictTransRoom = new Dictionary<Transform, Room>();
+    protected Room currentRoom;
     public override void Start()
     {
         base.Start();
@@ -39,7 +39,7 @@ public class Sidler : Professor
     }
     public override void Move()
     {
-        if (currentRoom == Room.WestHall)
+        if (currentRoom == Room.WestHall || currentRoom == Room.EastHall)
         {
             if (!_door.GetIsDoorActive())
             {
@@ -67,7 +67,7 @@ public class Sidler : Professor
         _navMeshAgent.SetDestination(_roomDictRoomTrans[currentRoom].position);
     }
 
-    public Transform ChooseAdjacentRoom()
+    public virtual Transform ChooseAdjacentRoom()
     {
         if (currentRoom == Room.SupplyCloset)
         {
@@ -77,13 +77,19 @@ public class Sidler : Professor
         }
         else if(currentRoom == Room.DiningArea)
         {
-            Transform[] adjacentRooms = { _roomDictRoomTrans[Room.SupplyCloset], _roomDictRoomTrans[Room.WestHall], _roomDictRoomTrans[Room.ShowStage] };
+            Transform[] adjacentRooms = { _roomDictRoomTrans[Room.SupplyCloset], _roomDictRoomTrans[Room.WestHall], _roomDictRoomTrans[Room.ShowStage], _roomDictRoomTrans[Room.Kitchen] };
             int randomIndex = Random.Range(0, adjacentRooms.Length);
             Debug.Log(randomIndex);
             currentRoom = _roomDictTransRoom[adjacentRooms[randomIndex]];
             return adjacentRooms[randomIndex];
         }
         else if(currentRoom == Room.ShowStage)
+        {
+            Transform[] adjacentRooms = { _roomDictRoomTrans[Room.DiningArea] };
+            currentRoom = _roomDictTransRoom[adjacentRooms[0]];
+            return adjacentRooms[0];
+        }
+        else if(currentRoom == Room.Kitchen)
         {
             Transform[] adjacentRooms = { _roomDictRoomTrans[Room.DiningArea] };
             currentRoom = _roomDictTransRoom[adjacentRooms[0]];

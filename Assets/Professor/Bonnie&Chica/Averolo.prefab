@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3270800068835929665}
   - component: {fileID: 8791041615720790949}
   - component: {fileID: 6456956953814256082}
-  - component: {fileID: 8581351197693097255}
+  - component: {fileID: 951332486649844066}
   m_Layer: 0
-  m_Name: Watkins
+  m_Name: Averolo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &8581351197693097255
+--- !u!114 &951332486649844066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,21 +122,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563505166477122342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75586173ff53ebf4299e99f82b09afe5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c4009bd294974f4dbe41dab80e2d490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _difficultyLevel: 0
   _movementOpportunityFrequency: 4
   _cooldownTime: 0
-  _targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _targets: []
   _doorLoc: 0
   _jumpScareObj: {fileID: 0}
-  _jumpScareVid: {fileID: 6456956953814256082}
+  _jumpScareVid: {fileID: 0}
   _audio1: {fileID: 0}
   _audio2: {fileID: 0}
+  _rooms: []
+  _roomName: 
 --- !u!1001 &1298659319892946540
 PrefabInstance:
   m_ObjectHideFlags: 0

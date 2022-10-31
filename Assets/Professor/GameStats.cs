@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStats : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameStats : MonoBehaviour
     [SerializeField] Door_Button LeftDoor;
     [SerializeField] Door_Button RightDoor;
     [SerializeField] UIManager UI;
+    [SerializeField] AudioSource winSound;
 
     private Professor[] _allProfessor;
 
@@ -40,6 +42,13 @@ public class GameStats : MonoBehaviour
         StartCoroutine(StartTimer());
     }
 
+    void StartWinSequence()
+    {
+        StopAllAI();
+        StopAllCoroutines();
+        StartCoroutine(WinSequence());
+    }
+
     IEnumerator StartTimer()
     {
         while(true)
@@ -52,17 +61,20 @@ public class GameStats : MonoBehaviour
                 _isFirstHour = false;
                 timeCount++;
                 IncreaseGameDifficulty();
-                IncreaseGameDifficulty();
-                IncreaseGameDifficulty();
             }
             
-            if(_timer == 89)
+            if(_timer == 10)
             {
                 _timer = 0;
                 timeCount++;
                 IncreaseGameDifficulty();
             }
             Text.text = _timeString[timeCount];
+
+            if(timeCount == 6)
+            {
+                StartWinSequence();
+            }
         }
     }
 
@@ -80,5 +92,19 @@ public class GameStats : MonoBehaviour
         {
             professor.StopAI();
         }
+    }
+
+    IEnumerator WinSequence()
+    {
+        winSound.Play();
+        yield return new WaitForSeconds(winSound.clip.length);
+        StartCoroutine(WaitToReloadLevel());
+    }
+
+
+    IEnumerator WaitToReloadLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
     }
 }
